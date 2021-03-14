@@ -11,6 +11,18 @@
 		0A441FFD25FA2E6F0042F293 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A441FFC25FA2E6F0042F293 /* ContentView.swift */; };
 		0A441FFF25FA2E700042F293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A441FFE25FA2E700042F293 /* Assets.xcassets */; };
 		0A44200225FA2E700042F293 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A44200125FA2E700042F293 /* Preview Assets.xcassets */; };
+		0A4CA42B25FDCA9C001B335E /* GridLayoutStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA42A25FDCA9C001B335E /* GridLayoutStyle.swift */; };
+		0A4CA42D25FDCAB0001B335E /* ReminderCategoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA42C25FDCAB0001B335E /* ReminderCategoryHeader.swift */; };
+		0A4CA42F25FDCAD6001B335E /* RemindersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA42E25FDCAD6001B335E /* RemindersViewModel.swift */; };
+		0A4CA43125FDCB20001B335E /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43025FDCB20001B335E /* Reminder.swift */; };
+		0A4CA43325FDCB34001B335E /* ReminderCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43225FDCB34001B335E /* ReminderCategory.swift */; };
+		0A4CA43525FDCB4F001B335E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43425FDCB4F001B335E /* View.swift */; };
+		0A4CA43725FDCB68001B335E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43625FDCB68001B335E /* Color.swift */; };
+		0A4CA43925FDCB84001B335E /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43825FDCB84001B335E /* Text.swift */; };
+		0A4CA43B25FDCBA4001B335E /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43A25FDCBA4001B335E /* ReminderView.swift */; };
+		0A4CA43D25FDCBCC001B335E /* ReminderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43C25FDCBCC001B335E /* ReminderCardView.swift */; };
+		0A4CA43F25FDCBE3001B335E /* NewReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA43E25FDCBE3001B335E /* NewReminderView.swift */; };
+		0A4CA44125FDCBFC001B335E /* ReminderCheckMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CA44025FDCBFC001B335E /* ReminderCheckMarkView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +32,18 @@
 		0A441FFE25FA2E700042F293 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A44200125FA2E700042F293 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0A44200325FA2E700042F293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A4CA42A25FDCA9C001B335E /* GridLayoutStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayoutStyle.swift; sourceTree = "<group>"; };
+		0A4CA42C25FDCAB0001B335E /* ReminderCategoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCategoryHeader.swift; sourceTree = "<group>"; };
+		0A4CA42E25FDCAD6001B335E /* RemindersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModel.swift; sourceTree = "<group>"; };
+		0A4CA43025FDCB20001B335E /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		0A4CA43225FDCB34001B335E /* ReminderCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCategory.swift; sourceTree = "<group>"; };
+		0A4CA43425FDCB4F001B335E /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		0A4CA43625FDCB68001B335E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		0A4CA43825FDCB84001B335E /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		0A4CA43A25FDCBA4001B335E /* ReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
+		0A4CA43C25FDCBCC001B335E /* ReminderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCardView.swift; sourceTree = "<group>"; };
+		0A4CA43E25FDCBE3001B335E /* NewReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderView.swift; sourceTree = "<group>"; };
+		0A4CA44025FDCBFC001B335E /* ReminderCheckMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCheckMarkView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +77,10 @@
 			isa = PBXGroup;
 			children = (
 				0A441FFA25FA2E6F0042F293 /* RemindeerApp.swift */,
-				0A441FFC25FA2E6F0042F293 /* ContentView.swift */,
+				0A4CA42925FDCA7A001B335E /* Models */,
+				0A4CA42825FDCA70001B335E /* View Models */,
+				0A4CA42725FDCA65001B335E /* Views */,
+				0A4CA42625FDCA52001B335E /* Extensions */,
 				0A441FFE25FA2E700042F293 /* Assets.xcassets */,
 				0A44200325FA2E700042F293 /* Info.plist */,
 				0A44200025FA2E700042F293 /* Preview Content */,
@@ -67,6 +94,47 @@
 				0A44200125FA2E700042F293 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0A4CA42625FDCA52001B335E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A4CA43425FDCB4F001B335E /* View.swift */,
+				0A4CA43625FDCB68001B335E /* Color.swift */,
+				0A4CA43825FDCB84001B335E /* Text.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0A4CA42725FDCA65001B335E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A441FFC25FA2E6F0042F293 /* ContentView.swift */,
+				0A4CA44025FDCBFC001B335E /* ReminderCheckMarkView.swift */,
+				0A4CA43E25FDCBE3001B335E /* NewReminderView.swift */,
+				0A4CA43C25FDCBCC001B335E /* ReminderCardView.swift */,
+				0A4CA43A25FDCBA4001B335E /* ReminderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0A4CA42825FDCA70001B335E /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A4CA42E25FDCAD6001B335E /* RemindersViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		0A4CA42925FDCA7A001B335E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A4CA42A25FDCA9C001B335E /* GridLayoutStyle.swift */,
+				0A4CA42C25FDCAB0001B335E /* ReminderCategoryHeader.swift */,
+				0A4CA43025FDCB20001B335E /* Reminder.swift */,
+				0A4CA43225FDCB34001B335E /* ReminderCategory.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +206,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A4CA43525FDCB4F001B335E /* View.swift in Sources */,
+				0A4CA43F25FDCBE3001B335E /* NewReminderView.swift in Sources */,
+				0A4CA42D25FDCAB0001B335E /* ReminderCategoryHeader.swift in Sources */,
 				0A441FFD25FA2E6F0042F293 /* ContentView.swift in Sources */,
+				0A4CA43B25FDCBA4001B335E /* ReminderView.swift in Sources */,
+				0A4CA43D25FDCBCC001B335E /* ReminderCardView.swift in Sources */,
 				0A441FFB25FA2E6F0042F293 /* RemindeerApp.swift in Sources */,
+				0A4CA43325FDCB34001B335E /* ReminderCategory.swift in Sources */,
+				0A4CA43125FDCB20001B335E /* Reminder.swift in Sources */,
+				0A4CA43925FDCB84001B335E /* Text.swift in Sources */,
+				0A4CA44125FDCBFC001B335E /* ReminderCheckMarkView.swift in Sources */,
+				0A4CA42B25FDCA9C001B335E /* GridLayoutStyle.swift in Sources */,
+				0A4CA42F25FDCAD6001B335E /* RemindersViewModel.swift in Sources */,
+				0A4CA43725FDCB68001B335E /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
