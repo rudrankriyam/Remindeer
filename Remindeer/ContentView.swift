@@ -7,9 +7,19 @@
 
 import SwiftUI
 
+enum ReminderCategoryHeader: String, CaseIterable {
+    case urgent
+    case important
+    case casual
+
+    var name: String {
+        self.rawValue.capitalized
+    }
+}
+
 enum GridLayoutStyle {
     case vertical
-    //   case horizontal
+    case horizontal
 }
 
 struct ContentView: View {
@@ -22,7 +32,7 @@ struct ContentView: View {
             ReminderView(style: layoutStyle)
                 .navigationBarTitle("Remindeer")
                 .navigationBarItems(leading: Button(action: {
-                    //    layoutStyle == .vertical ? (layoutStyle = .horizontal) : (layoutStyle = .vertical)
+                    layoutStyle == .vertical ? (layoutStyle = .horizontal) : (layoutStyle = .vertical)
                 }, label: {
                     Image(systemName: "rectangle.grid.1x2")
                         .font(.title)
@@ -49,53 +59,64 @@ struct ReminderView: View {
 
     var items: [GridItem] {
         switch style {
-            case .vertical:
-                return Array(repeating: .init(.fixed(120)), count: 2)
-            //  case .horizontal:
-            //     return Array(repeating: .init(.fixed(120)), count: 2)
+        case .vertical:
+            return Array(repeating: .init(.flexible()), count: 2)
+        case .horizontal:
+            return Array(repeating: .init(.fixed(120)), count: 2)
         }
     }
 
     private func headerView(with header: String) -> some View {
         Text(header)
-           // .font(.title2)
+            // .font(.title2)
             .bold()
             .rotationEffect(Angle(degrees: -90))
-         //   .padding()
+            //   .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .background(RoundedRectangle(cornerRadius: 0, style: .continuous)
+                            .fill(Color.headerBackground))
+    }
+
+    private func headerVerticalView(with header: String) -> some View {
+        Text(header)
+            .font(.title2)
+            .bold()
+            .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .background(RoundedRectangle(cornerRadius: 0, style: .continuous)
                             .fill(Color.headerBackground))
     }
 
     var body: some View {
-        Group {
-            switch style {
-                case .vertical:
-                    ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(viewModel.reminderCategories, id: \.id) { category in
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                LazyHGrid(rows: items, pinnedViews: [.sectionHeaders]) {
-                                    Section(header: headerView(with: category.header)) {
-                                        ForEach(category.reminders, id: \.id) { reminder in
-                                            ReminderCardView(category: category, reminder: reminder)
-                                        }
-                                    }
-                                }
-                                .padding(.vertical)
+        ScrollView(.vertical, showsIndicators: false) {
+            ForEach(viewModel.reminderCategories, id: \.id) { category in
+                switch style {
+                case .horizontal:
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHGrid(rows: items, pinnedViews: [.sectionHeaders]) {
+                            Section(header: headerView(with: category.header.name)) {
+                                remindersView(category: category)
                             }
                         }
-                        .padding(.trailing)
+                        .padding(.vertical)
                     }
-                // case .horizontal:
-                //                    ScrollView(.horizontal, showsIndicators: false) {
-                //                        LazyHGrid(rows: items) {
-                //                            ForEach(viewModel.reminders, id: \.id) { reminder in
-                //                                ReminderCardView(reminder: reminder)
-                //                            }
-                //                        }
-                //                        .padding(.horizontal)
-                //                    }
+                    .padding(.trailing)
+
+                case .vertical:
+                    LazyVGrid(columns: items, spacing: 10, pinnedViews: [.sectionHeaders]) {
+                        Section(header: headerVerticalView(with: category.header.name)) {
+                            remindersView(category: category)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
             }
+        }
+    }
+
+    func remindersView(category: ReminderCategory) -> some View {
+        ForEach(category.reminders, id: \.id) { reminder in
+            ReminderCardView(category: category, reminder: reminder)
         }
     }
 }
@@ -132,7 +153,7 @@ struct ReminderCardView: View {
         }
         .accessibilityElement(children: .combine)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal, 8)
+        .padding(8)
         .customBackground(color: reminder.markedCompleted ? .main : .background)
     }
 
@@ -144,9 +165,9 @@ struct ReminderCardView: View {
 }
 
 struct NewReminderView: View {
-    @State private var category = ReminderCategory(header: "")
-
+    @State private var category: ReminderCategoryHeader = .casual
     @State private var reminder = Reminder()
+
     @EnvironmentObject var viewModel: RemindersViewModel
     @Environment(\.presentationMode) private var presentation
 
@@ -156,9 +177,9 @@ struct NewReminderView: View {
                 Text("CATEGORIES")
                     .headlineFont()
 
-                Picker("Please choose a color", selection: $category) {
+                Picker("Please choose a category", selection: $category) {
                     ForEach(viewModel.reminderCategories, id: \.self) { category in
-                        Text(category.header)
+                        Text(category.header.name)
                     }
                 }
 
@@ -185,9 +206,10 @@ struct NewReminderView: View {
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                     .padding()
                 }
+
                 Button(action: {
                     if !reminder.name.isEmpty {
-                        viewModel.createReminder(for: category, reminder: reminder)
+                        viewModel.createReminder(for: self.category, reminder: reminder)
                         presentation.wrappedValue.dismiss()
                     }
                 }, label: {
@@ -273,15 +295,15 @@ extension View {
 
 struct ReminderCategory: Identifiable, Hashable {
     var id = UUID()
-    var header: String
+    var header: ReminderCategoryHeader = .casual
     var reminders: [Reminder] = []
 }
 
 extension ReminderCategory {
     static func testReminderCategories() -> [ReminderCategory] {
         var reminderCategories: [ReminderCategory] = []
-        for index in 0..<5 {
-            reminderCategories.append(ReminderCategory(header: "Header \(index)", reminders: Reminder.testReminders()))
+        for header in ReminderCategoryHeader.allCases {
+            reminderCategories.append(ReminderCategory(header: header, reminders: Reminder.testReminders()))
         }
 
         return reminderCategories
@@ -309,9 +331,9 @@ extension Reminder {
 final class RemindersViewModel: ObservableObject {
     @Published var reminderCategories: [ReminderCategory] = ReminderCategory.testReminderCategories()
 
-    func createReminder(for category: ReminderCategory, reminder: Reminder) {
+    func createReminder(for header: ReminderCategoryHeader, reminder: Reminder) {
         if let currentCategory = reminderCategories.firstIndex(
-            where: { $0.id == category.id }) {
+            where: { $0.header == header }) {
             reminderCategories[currentCategory].reminders.append(reminder)
         }
     }
@@ -330,12 +352,23 @@ final class RemindersViewModel: ObservableObject {
 struct ReminderCheckMarkView: View {
     var markedCompleted: Bool
 
+    var accessibilityLabel: Text {
+        markedCompleted ? Text("Reminder Completed") : Text("Mark the reminder complete")
+    }
+
+    var imageName: String {
+        markedCompleted ? "checkmark.circle.fill" : "circle"
+    }
+
+    var foregroundColor: Color {
+        markedCompleted ? .white : .gray
+    }
+
     var body: some View {
         Image(
-            systemName: markedCompleted ? "checkmark.circle.fill" : "circle")
+            systemName: imageName)
             .font(.system(size: 25))
-            .foregroundColor(markedCompleted ? .white : .gray)
-            .accessibility(
-                label: markedCompleted ? Text("Reminder Completed") : Text("Mark the reminder complete"))
+            .foregroundColor(foregroundColor)
+            .accessibility(label: accessibilityLabel)
     }
 }
