@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1C881825FFE0DF00F6B080 /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1C881725FFE0DF00F6B080 /* ReminderListView.swift */; };
 		0A441FFB25FA2E6F0042F293 /* RemindeerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A441FFA25FA2E6F0042F293 /* RemindeerApp.swift */; };
 		0A441FFD25FA2E6F0042F293 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A441FFC25FA2E6F0042F293 /* ContentView.swift */; };
 		0A441FFF25FA2E700042F293 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A441FFE25FA2E700042F293 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A1C881725FFE0DF00F6B080 /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
 		0A441FF725FA2E6F0042F293 /* Remindeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Remindeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A441FFA25FA2E6F0042F293 /* RemindeerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindeerApp.swift; sourceTree = "<group>"; };
 		0A441FFC25FA2E6F0042F293 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				0A4CA43C25FDCBCC001B335E /* ReminderCardView.swift */,
 				0A4CA43A25FDCBA4001B335E /* ReminderView.swift */,
 				0A4CA44225FE100E001B335E /* AYImageButton.swift */,
+				0A1C881725FFE0DF00F6B080 /* ReminderListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				0A4CA43525FDCB4F001B335E /* View.swift in Sources */,
 				0A4CA43F25FDCBE3001B335E /* NewReminderView.swift in Sources */,
 				0A4CA42D25FDCAB0001B335E /* ReminderCategoryHeader.swift in Sources */,
+				0A1C881825FFE0DF00F6B080 /* ReminderListView.swift in Sources */,
 				0A441FFD25FA2E6F0042F293 /* ContentView.swift in Sources */,
 				0A4CA44325FE100E001B335E /* AYImageButton.swift in Sources */,
 				0A4CA43B25FDCBA4001B335E /* ReminderView.swift in Sources */,

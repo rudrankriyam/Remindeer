@@ -9,7 +9,7 @@ import Foundation
 
 struct Reminder: Identifiable, Hashable {
     var id = UUID()
-    var name: String = "Reminder Name"
+    var name = defaultReminderName
     var date = Date()
     var markedCompleted = false
 }
@@ -24,4 +24,8 @@ extension Reminder {
 
         return reminders
     }
+}
+
+extension Reminder {
+    static let defaultReminderName = "Reminder Name"
 }

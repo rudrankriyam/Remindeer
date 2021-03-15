@@ -49,12 +49,16 @@ struct NewReminderView: View {
                 }, label: {
                     Text("CREATE REMINDER")
                         .kerning(1.0)
-                        .disabled(reminder.name.isEmpty)
                 })
-                .buttonStyle(CustomButtonStyle())
+                .disabled(!reminderButtonStatus)
+                .buttonStyle(CustomButtonStyle(status: reminderButtonStatus))
             }
             .navigationTitle("New Reminder")
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    var reminderButtonStatus: Bool {
+        !reminder.name.isEmpty && reminder.name != Reminder.defaultReminderName
     }
 }

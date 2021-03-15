@@ -21,6 +21,31 @@ struct ReminderView: View {
         }
     }
 
+    var body: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+            ForEach(viewModel.reminderCategories, id: \.id) { category in
+                switch style {
+                case .horizontal:
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHGrid(rows: items, pinnedViews: [.sectionHeaders]) {
+                            Section(header: categoryHHeader(with: category.header.name)) {
+                                ReminderListView(category: category)
+                            }
+                        }
+                        .padding(.vertical)
+                    }
+                case .vertical:
+                    LazyVGrid(columns: items, spacing: 10, pinnedViews: [.sectionHeaders]) {
+                        Section(header: categoryVHeader(with: category.header.name)) {
+                            ReminderListView(category: category)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+            }
+        }
+    }
+
     private func categoryHHeader(with header: String) -> some View {
         Text(header)
             .bold()
@@ -38,36 +63,5 @@ struct ReminderView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             .background(RoundedRectangle(cornerRadius: 0)
                             .fill(Color.headerBackground))
-    }
-
-    var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            ForEach(viewModel.reminderCategories, id: \.id) { category in
-                switch style {
-                case .horizontal:
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHGrid(rows: items, pinnedViews: [.sectionHeaders]) {
-                            Section(header: categoryHHeader(with: category.header.name)) {
-                                remindersView(category: category)
-                            }
-                        }
-                        .padding(.vertical)
-                    }
-                case .vertical:
-                    LazyVGrid(columns: items, spacing: 10, pinnedViews: [.sectionHeaders]) {
-                        Section(header: categoryVHeader(with: category.header.name)) {
-                            remindersView(category: category)
-                        }
-                    }
-                    .padding(.horizontal)
-                }
-            }
-        }
-    }
-
-    private func remindersView(category: ReminderCategory) -> some View {
-        ForEach(category.reminders, id: \.id) { reminder in
-            ReminderCardView(category: category, reminder: reminder)
-        }
     }
 }
