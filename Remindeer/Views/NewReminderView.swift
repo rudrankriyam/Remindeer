@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewReminderView: View {
-    @State private var category: ReminderCategoryHeader = .casual
+    @State private var header: ReminderCategoryHeader = .casual
     @State private var reminder = Reminder()
 
     @EnvironmentObject var viewModel: RemindersViewModel
@@ -17,32 +17,25 @@ struct NewReminderView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                Text("CATEGORIES")
-                    .headlineFont()
+                Text("CATEGORIES").headline()
 
-                Picker("Please choose a category", selection: $category) {
-                    ForEach(viewModel.reminderCategories, id: \.self) { category in
-                        Text(category.header.name)
+                Picker("Please choose a category", selection: $header) {
+                    ForEach(ReminderCategoryHeader.allCases, id: \.self) { header in
+                        Text(header.name)
                     }
                 }
 
-                Text("REMINDER NAME")
-                    .headlineFont()
-
+                Text("REMINDER NAME").headline()
+                
                 TextField("REMINDER", text: $reminder.name)
                     .padding()
                     .customBackground()
                     .padding(.horizontal)
 
                 HStack {
-                    Text("DUE")
-                        .headlineFont()
-                        .padding(.bottom)
+                    Text("DUE").headline()
 
-                    DatePicker(selection: $reminder.date,
-                               in: Date()...,
-                               displayedComponents: .date
-                    ) {
+                    DatePicker(selection: $reminder.date, in: Date()..., displayedComponents: .date) {
                         Text("Select a date")
                     }
                     .labelsHidden()
@@ -51,17 +44,16 @@ struct NewReminderView: View {
                 }
 
                 Button(action: {
-                    if !reminder.name.isEmpty {
-                        viewModel.createReminder(for: self.category, reminder: reminder)
-                        presentation.wrappedValue.dismiss()
-                    }
+                    viewModel.createReminder(for: header, reminder: reminder)
+                    presentation.wrappedValue.dismiss()
                 }, label: {
                     Text("CREATE REMINDER")
-                        .customButton()
-                        .padding()
+                        .kerning(1.0)
+                        .disabled(reminder.name.isEmpty)
                 })
+                .buttonStyle(CustomButtonStyle())
             }
-            .navigationBarTitle("New Reminder")
+            .navigationTitle("New Reminder")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

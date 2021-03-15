@@ -16,6 +16,7 @@ struct ReminderCategory: Identifiable, Hashable {
 extension ReminderCategory {
     static func testReminderCategories() -> [ReminderCategory] {
         var reminderCategories: [ReminderCategory] = []
+        
         for header in ReminderCategoryHeader.allCases {
             reminderCategories.append(ReminderCategory(header: header, reminders: Reminder.testReminders()))
         }

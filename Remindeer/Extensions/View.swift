@@ -9,7 +9,6 @@ import SwiftUI
 
 extension View {
     func customBackground(color: Color = .background) -> some View {
-        self.background(RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .fill(color))
+        self.background(RoundedRectangle(cornerRadius: 8).fill(color))
     }
 }

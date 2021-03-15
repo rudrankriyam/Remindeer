@@ -15,20 +15,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ReminderView(style: layoutStyle)
-                .navigationBarTitle("Remindeer")
-                .navigationBarItems(leading: Button(action: {
-                    layoutStyle == .vertical ? (layoutStyle = .horizontal) : (layoutStyle = .vertical)
-                }, label: {
-                    Image(systemName: "rectangle.grid.1x2")
-                        .font(.title)
-                        .accentColor(.main)
-                }), trailing: Button(action: {
-                    showNewReminderView.toggle()
-                }, label: {
-                    Image(systemName: "plus")
-                        .font(.title)
-                        .accentColor(.main)
-                }))
+                .navigationTitle("Remindeer")
+                .navigationBarItems(
+                    leading:
+                        AYImageButton(systemName: "rectangle.grid.1x2", label: "Change layout", action: {
+                            layoutStyle == .vertical ? (layoutStyle = .horizontal) : (layoutStyle = .vertical)
+                        }),
+                    trailing:
+                        AYImageButton(systemName: "plus", label: "Add reminder", action: {
+                            showNewReminderView.toggle()
+                        }))
                 .sheet(isPresented: $showNewReminderView) {
                     NewReminderView().environmentObject(viewModel)
                 }

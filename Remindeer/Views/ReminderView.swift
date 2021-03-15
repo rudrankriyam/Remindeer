@@ -15,30 +15,28 @@ struct ReminderView: View {
     var items: [GridItem] {
         switch style {
         case .vertical:
-            return Array(repeating: .init(.flexible()), count: 2)
+            return Array(repeating: .init(.adaptive(minimum: 120)), count: 2)
         case .horizontal:
             return Array(repeating: .init(.fixed(120)), count: 2)
         }
     }
 
-    private func headerView(with header: String) -> some View {
+    private func categoryHHeader(with header: String) -> some View {
         Text(header)
-            // .font(.title2)
             .bold()
             .rotationEffect(Angle(degrees: -90))
-            //   .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RoundedRectangle(cornerRadius: 0, style: .continuous)
                             .fill(Color.headerBackground))
     }
 
-    private func headerVerticalView(with header: String) -> some View {
+    private func categoryVHeader(with header: String) -> some View {
         Text(header)
             .font(.title2)
             .bold()
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            .background(RoundedRectangle(cornerRadius: 0, style: .continuous)
+            .background(RoundedRectangle(cornerRadius: 0)
                             .fill(Color.headerBackground))
     }
 
@@ -49,17 +47,15 @@ struct ReminderView: View {
                 case .horizontal:
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: items, pinnedViews: [.sectionHeaders]) {
-                            Section(header: headerView(with: category.header.name)) {
+                            Section(header: categoryHHeader(with: category.header.name)) {
                                 remindersView(category: category)
                             }
                         }
                         .padding(.vertical)
                     }
-                    .padding(.trailing)
-
                 case .vertical:
                     LazyVGrid(columns: items, spacing: 10, pinnedViews: [.sectionHeaders]) {
-                        Section(header: headerVerticalView(with: category.header.name)) {
+                        Section(header: categoryVHeader(with: category.header.name)) {
                             remindersView(category: category)
                         }
                     }

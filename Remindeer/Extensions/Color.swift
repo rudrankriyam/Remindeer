@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Color {
     static var main: Color {
-        Color(.systemIndigo)
+        Color(.systemPurple)
     }
 
     static var background: Color {

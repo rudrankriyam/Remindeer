@@ -17,7 +17,8 @@ struct Reminder: Identifiable, Hashable {
 extension Reminder {
     static func testReminders() -> [Reminder] {
         var reminders: [Reminder] = []
-        for _ in 0..<10 {
+
+        for _ in 0..<12 {
             reminders.append(Reminder())
         }
 

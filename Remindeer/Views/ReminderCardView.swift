@@ -16,19 +16,20 @@ struct ReminderCardView: View {
         VStack(spacing: 8) {
             Button(action: {
                 withAnimation {
-                    viewModel.toggleReminder(for: category, reminder: reminder)
+                    viewModel.toggleReminder(for: category.header, reminder: reminder)
                 }
-            }, label: {
+            }) {
                 ReminderCheckMarkView(markedCompleted: reminder.markedCompleted)
-            })
+            }
             .frame(alignment: .leading)
 
-            Text(reminder.name).font(.headline)
+            Text(reminder.name)
+                .font(.headline)
+                .multilineTextAlignment(.center)
                 .foregroundColor(reminder.markedCompleted ? .white : .main)
 
             if !reminder.markedCompleted {
-                Text("Due: \(getDate())")
-                    .font(.subheadline)
+                Text("Due: \(getDate())").font(.subheadline)
             }
         }
         .accessibilityElement(children: .combine)
