@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ReminderView: View {
     @EnvironmentObject var viewModel: RemindersViewModel
-
     var style: GridLayoutStyle
 
     var items: [GridItem] {
